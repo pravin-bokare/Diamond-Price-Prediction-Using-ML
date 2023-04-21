@@ -11,11 +11,12 @@ from src.utils import evaluate_model
 from dataclasses import dataclass
 import sys
 import os
+from from_root import from_root
 
 
 @dataclass
 class ModelTrainerConfig:
-    trained_model_file_path = os.path.join('artifacts', 'model.pkl')
+    trained_model_file_path = os.path.join(from_root(), 'artifacts', 'model.pkl')
 
 
 class ModelTrainer:
