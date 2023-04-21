@@ -6,16 +6,18 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
-import logging
+from src.logger import logging
+from from_root import from_root
 
 
 ## Intitialize the Data Ingetion Configuration
 
 @dataclass
 class DataIngestionconfig:
-    train_data_path:str=os.path.join('artifacts', 'train.csv')
-    test_data_path:str=os.path.join('artifacts', 'test.csv')
-    raw_data_path:str=os.path.join('artifacts', 'raw.csv')
+
+    train_data_path:str=os.path.join(from_root(),'artifacts', 'train.csv')
+    test_data_path:str=os.path.join(from_root(), 'artifacts', 'test.csv')
+    raw_data_path:str=os.path.join(from_root(), 'artifacts', 'raw.csv')
 
 
 ## create a class for Data Ingestion
@@ -26,8 +28,8 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info('Data Ingestion methods Starts')
         try:
-            df = pd.read_csv(os.path.join('F:\iNeuron\ML Projects\House Price/notebooks\data', 'gemstone.csv'))
-            #df = pd.read_csv('F:\iNeuron\ML Projects\House Price/notebooks\data\gemstone.csv')
+            df = pd.read_csv(os.path.join("F:\iNeuron\ML Projects\Diamond Price Prediction/notebooks\data", 'gemstone.csv'))
+            #df = pd.read_csv(r'../House Price/notebooks\data\gemstone.csv')
             logging.info('Dataset read as pandas Dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path), exist_ok=True)
